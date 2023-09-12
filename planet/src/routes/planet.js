@@ -1,9 +1,6 @@
 const router = require("express").Router();
-const Planet = require('../../data')
+const controllers = require('../controllers')
 
-router.get("/planet", async (req, res) => {
-    const planet = await Planet.list()
-    res.status(200).send(planet);
-});
+router.get("/planet", controllers.getAllPlanet);
 
 module.exports = router;
