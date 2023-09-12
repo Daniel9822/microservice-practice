@@ -10,21 +10,21 @@ server.use(morgan("dev"));
 server.use(
     "/characters",
     createProxyMiddleware({
-        target: "http://localhost:3000",
+        target: "http://characters:3000",
         changeOrigin: true,
     })
 );
 server.use(
     "/films",
     createProxyMiddleware({
-        target: "http://localhost:3001",
+        target: "http://films:3001",
         changeOrigin: true,
     })
 );
 server.use(
     "/planet",
     createProxyMiddleware({
-        target: "http://localhost:3002",
+        target: "http://planet:3002",
         changeOrigin: true,
     })
 );
