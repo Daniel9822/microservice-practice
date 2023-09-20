@@ -1,6 +1,7 @@
-const handleError = require("../utils/handleError");
-const { getCharacter } = require("./characters");
+const handleError = require("../utils/handleError")
+const { getCharacter, createCharacter } = require("./characters")
 
 module.exports = {
-    getCharacters: handleError(getCharacter),
-};
+  getCharacters: handleError(getCharacter),
+  createCharacter: handleError(createCharacter)
+}
