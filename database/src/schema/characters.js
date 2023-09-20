@@ -11,8 +11,8 @@ const characterSchema = new Schema(
     eye_color: String,
     birth_year: String,
     gender: String,
-    homeworld: { type: String, ref: "Planet" },
-    films: [{ type: String, ref: "Film" }]
+    homeworld: { type: String, ref: "planet" },
+    films: [{ type: String, ref: "film" }]
   },
   {
     timestamps: true,
