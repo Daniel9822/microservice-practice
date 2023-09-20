@@ -1,7 +1,6 @@
 const response = require("../helpers/response")
 const modelsNames = require("../helpers/modelsName")
 const { listService, insertServices } = require("../services")
-const ErrorHandler = require("../helpers/errors/errorHandler")
 
 const listCharacterCtrl = async (req, res) => {
   const model = modelsNames.characterModel
