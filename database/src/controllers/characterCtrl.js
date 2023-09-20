@@ -1,23 +1,24 @@
 const response = require("../helpers/response")
 const modelsNames = require("../helpers/modelsName")
 const { listService, insertServices } = require("../services")
+const ErrorHandler = require("../helpers/errors/errorHandler")
 
-const listCharacter = async (req, res) => {
+const listCharacterCtrl = async (req, res) => {
   const model = modelsNames.characterModel
-  const data = listService({ model })
+  const data = await listService({ model })
   response(res, 200, data)
 }
 
-const insertCharacter = async (req, res) => {
+const insertCharacterCtrl = async (req, res) => {
   const body = req.body
+  const model = modelsNames.characterModel
   console.log(body)
 
-  const model = modelsNames.characterModel
   const data = await insertServices({ model, data: body })
   response(res, 200, data)
 }
 
 module.exports = {
-  listCharacter,
-  insertCharacter
+  listCharacterCtrl,
+  insertCharacterCtrl
 }
