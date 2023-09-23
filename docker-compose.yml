@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  apigatway:
+    container_name: apigatway
+    restart: always
+    build: ./apigatway
+    ports:
+      - "8000:8000"
+
+  characters: 
+    container_name: characters
+    restart: always
+    build: ./characters
+    ports:
+      - "3000:3000"
+
+  database:
+    container_name: database
+    restart: always
+    build: ./database
+    ports:
+      - "8004:8004"
+    
+  films:
+    container_name: films
+    restart: always
+    build: ./films
+    ports:
+      - "3001:3001"
+
+  planet:
+    container_name: planet
+    restart: always
+    build: ./planet
+    ports:
+      - "3002:3002"
