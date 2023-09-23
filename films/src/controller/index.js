@@ -1,6 +1,7 @@
-const errorCatcher = require("../utils/errorCatcher");
-const { getFilms } = require('./films')
+const errorCatcher = require("../utils/errorCatcher")
+const { getFilmsCtrl, createFilmsCtrl } = require("./films")
 
 module.exports = {
-    getFilms: errorCatcher(getFilms)
+  getFilms: errorCatcher(getFilmsCtrl),
+  createFilm: errorCatcher(createFilmsCtrl)
 }
