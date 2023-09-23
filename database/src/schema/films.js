@@ -17,7 +17,7 @@ const filmSchema = new Schema(
 )
 
 filmSchema.statics.list = async function () {
-  const data = await film.find().populate("characters").populate("planet")
+  const data = await film.find().populate("characters").populate("planets")
   return data
 }
 
