@@ -1,9 +1,23 @@
-const { HandleError } = require("../src/utils/errors/handleAsyncErrors");
-const planet = require("./planets.json");
+const { DATABASE_SERVICE } = require("../src/config/envs")
 
+const PATH = DATABASE_SERVICE
 module.exports = {
-    list: async () => {
-        throw new HandleError('algo salio mal', 500)
-        return planet;
-    },
-};
+  list: async () => {
+    const res = await fetch(PATH)
+    const { data } = await res.json()
+    return data
+  },
+
+  insert: async (planet) => {
+    const res = await fetch(PATH, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(planet)
+    })
+
+    const { data } = await res.json()
+    return data
+  }
+}
