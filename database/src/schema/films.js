@@ -1,8 +1,7 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model } = require("mongoose");
 
 const filmSchema = new Schema(
   {
-    _id: String,
     title: String,
     opening_crawl: String,
     director: String,
@@ -14,17 +13,22 @@ const filmSchema = new Schema(
   {
     timestamps: true
   }
-)
+);
 
 filmSchema.statics.list = async function () {
-  const data = await film.find().populate("characters").populate("planets")
-  return data
-}
+  const data = await film.find().populate("characters").populate("planets");
+  return data;
+};
 
 filmSchema.statics.insert = async function (data) {
-  const create = await film.create(data)
-  return create
-}
+  const create = await film.create(data);
+  return create;
+};
 
-const film = model("film", filmSchema)
-module.exports = film
+filmSchema.statics.removeItem = async function (id) {
+  const remove = await film.findByIdAndRemove(id);
+  return remove;
+};
+
+const film = model("film", filmSchema);
+module.exports = film;
