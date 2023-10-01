@@ -1,8 +1,9 @@
-const { listFilm, insertFilm } = require("../controllers")
+const { films } = require("../controllers");
 
-const router = require("express").Router()
+const router = require("express").Router();
 
-router.get("/", listFilm)
-router.post("/", insertFilm)
+router.get("/", films.listFilm);
+router.post("/", films.insertFilm);
+router.delete("/:id", films.removeFilm);
 
-module.exports = router
+module.exports = router;
