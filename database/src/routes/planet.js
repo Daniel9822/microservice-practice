@@ -1,8 +1,9 @@
-const { listPlanet, insertPlanet } = require("../controllers")
+const { planets } = require("../controllers");
 
-const router = require("express").Router()
+const router = require("express").Router();
 
-router.get("/", listPlanet)
-router.post("/", insertPlanet)
+router.get("/", planets.listPlanet);
+router.post("/", planets.insertPlanet);
+router.delete("/:id", planets.removePlanet);
 
-module.exports = router
+module.exports = router;
