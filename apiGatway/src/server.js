@@ -1,36 +1,37 @@
-const express = require("express")
-const morgan = require("morgan")
-const { createProxyMiddleware } = require("http-proxy-middleware")
-const proxyReq = require("./utils/proxyReq")
+const express = require("express");
+const morgan = require("morgan");
+const { createProxyMiddleware } = require("http-proxy-middleware");
+const proxyReq = require("./utils/proxyReq");
+const routeEnv = require("./utils/envs");
 
-const server = express()
+const server = express();
 
-server.use(express.json())
-server.use(morgan("dev"))
+server.use(express.json());
+server.use(morgan("dev"));
 
 server.use(
   "/characters",
   createProxyMiddleware({
-    target: "http://characters:3000",
+    target: routeEnv.character,
     changeOrigin: true,
     onProxyReq: proxyReq
   })
-)
+);
 server.use(
   "/films",
   createProxyMiddleware({
-    target: "http://films:3001",
+    target: routeEnv.films,
     changeOrigin: true,
     onProxyReq: proxyReq
   })
-)
+);
 server.use(
   "/planet",
   createProxyMiddleware({
-    target: "http://planet:3002",
+    target: routeEnv.planets,
     changeOrigin: true,
     onProxyReq: proxyReq
   })
-)
+);
 
-module.exports = server
+module.exports = server;
