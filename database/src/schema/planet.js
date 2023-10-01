@@ -1,8 +1,7 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model } = require("mongoose");
 
 const planetSchema = new Schema(
   {
-    _id: String,
     name: String,
     rotation_period: String,
     orbital_period: String,
@@ -17,18 +16,23 @@ const planetSchema = new Schema(
   {
     timestamps: true
   }
-)
+);
 
 planetSchema.statics.list = async function () {
-  const data = await planet.find().populate("films")
-  return data
-}
+  const data = await planet.find().populate("films");
+  return data;
+};
 
 planetSchema.statics.insert = async function (data) {
-  const create = await planet.create(data)
-  return create
-}
+  const create = await planet.create(data);
+  return create;
+};
 
-const planet = model("planet", planetSchema)
+planetSchema.statics.removeItem = async function (id) {
+  const remove = await planet.findByIdAndRemove(id);
+  return remove;
+};
 
-module.exports = planet
+const planet = model("planet", planetSchema);
+
+module.exports = planet;
