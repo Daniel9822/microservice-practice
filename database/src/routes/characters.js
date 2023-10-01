@@ -1,8 +1,9 @@
-const { listCharacter, insertCharacter } = require("../controllers")
+const { characters } = require("../controllers");
 
-const router = require("express").Router()
+const router = require("express").Router();
 
-router.get("/", listCharacter)
-router.post("/", insertCharacter)
+router.get("/", characters.listCharacter);
+router.post("/", characters.insertCharacter);
+router.delete("/:id", characters.removeCharacter);
 
-module.exports = router
+module.exports = router;
