@@ -1,8 +1,7 @@
-const { Schema, model } = require("mongoose")
+const { Schema, model } = require("mongoose");
 
 const characterSchema = new Schema(
   {
-    _id: String,
     name: String,
     height: String,
     mass: String,
@@ -18,17 +17,22 @@ const characterSchema = new Schema(
     timestamps: true,
     versionKey: false
   }
-)
+);
 
 characterSchema.statics.list = async function () {
-  const data = await character.find().populate("homeworld").populate("films")
-  return data
-}
+  const data = await character.find().populate("homeworld").populate("films");
+  return data;
+};
 
 characterSchema.statics.insert = async function (char) {
-  const data = await character.create(char)
-  return data
-}
+  const data = await character.create(char);
+  return data;
+};
 
-const character = model("character", characterSchema)
-module.exports = character
+characterSchema.statics.removeItem = async function (id) {
+  const data = await character.findByIdAndDelete(id);
+  return data;
+};
+
+const character = model("character", characterSchema);
+module.exports = character;
