@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   apigatway:
@@ -7,13 +7,17 @@ services:
     build: ./apigatway
     ports:
       - "8000:8000"
+    env_file:
+      - ./apigatway/.env
 
-  characters: 
+  characters:
     container_name: characters
     restart: always
     build: ./characters
     ports:
       - "3000:3000"
+    env_file:
+      - ./characters/.env
 
   database:
     container_name: database
@@ -21,13 +25,17 @@ services:
     build: ./database
     ports:
       - "8004:8004"
-    
+    env_file:
+      - ./database/.env
+
   films:
     container_name: films
     restart: always
     build: ./films
     ports:
       - "3001:3001"
+    env_file:
+      - ./films/.env
 
   planet:
     container_name: planet
@@ -35,3 +43,5 @@ services:
     build: ./planet
     ports:
       - "3002:3002"
+    env_file:
+      - ./planet/.env
