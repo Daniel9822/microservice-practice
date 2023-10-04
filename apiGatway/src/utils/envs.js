@@ -8,14 +8,14 @@ const NODE_ENV = process.env.NODE_ENV;
 const routeEnv = {
   character: process.env.CHARACTERS,
   planets: process.env.PLANETS,
-  films: process.env.films
+  films: process.env.FILMS
 };
 
-if (NODE_ENV === "development") {
-  for (const key in routeEnv) {
-    routeEnv[key] = routeEnv[key].replace(/\/\/[^:]+:/, "//localhost:");
-  }
-}
+// if (NODE_ENV === "development") {
+//   for (const key in routeEnv) {
+//     routeEnv[key] = routeEnv[key].replace(/\/\/[^:]+:/, "//localhost:");
+//   }
+// }
 
 console.log(routeEnv);
 
