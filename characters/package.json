@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_ENV=prodution && node ./index",
-    "dev": "node ./index"
+    "test": "jest --detectOpenHandles --coverage",
+    "start": "node ./index",
+    "dev": "set NODE_ENV=development && node ./index"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,18 @@
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "morgan": "^1.10.0"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "globalTeardown": "./global-kill.js",
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   }
 }
