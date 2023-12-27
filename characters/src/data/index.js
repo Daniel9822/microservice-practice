@@ -1,6 +1,8 @@
+const { body } = require("express-validator");
 const { DB_SERVICE } = require("../config/envs");
 
 const PATH = `${DB_SERVICE}/characters`;
+console.log(PATH);
 
 module.exports = {
   list: async () => {
@@ -26,6 +28,21 @@ module.exports = {
   deleteChar: async (id) => {
     const res = await fetch(`${PATH}/${id}`, {
       method: "DELETE"
+    });
+
+    const { data } = await res.json();
+    return data;
+  },
+
+  updateChar: async ({ id, body }) => {
+    console.log(body);
+
+    const res = await fetch(`${PATH}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
     });
 
     const { data } = await res.json();
