@@ -1,6 +1,10 @@
 const router = require("express").Router();
-const { getCharacters, deleteCharacter } = require("../controllers");
-const { createCharacter } = require("../controllers");
+const {
+  getCharacters,
+  deleteCharacter,
+  updateCharacter,
+  createCharacter
+} = require("../controllers");
 const {
   characterValidator,
   characterValidatorParam
@@ -9,5 +13,6 @@ const {
 router.get("/characters", getCharacters);
 router.post("/characters", characterValidator, createCharacter);
 router.delete("/characters/:id", characterValidatorParam, deleteCharacter);
+router.put("/characters/:id", characterValidator, updateCharacter);
 
 module.exports = router;
