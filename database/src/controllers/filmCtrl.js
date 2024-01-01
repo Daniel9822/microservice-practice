@@ -1,6 +1,11 @@
 const modelsName = require("../helpers/modelsName");
 const response = require("../helpers/response");
-const { listService, insertServices, removeService } = require("../services");
+const {
+  listService,
+  insertServices,
+  removeService,
+  updateService
+} = require("../services");
 
 const listFilmCtrl = async (req, res) => {
   const model = modelsName.filmModel;
@@ -23,8 +28,18 @@ const removeFilmsCtrl = async (req, res) => {
   response(res, 200, data);
 };
 
+const updateFilmCtrl = async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  const model = modelsName.filmModel;
+  const data = await updateService({ model, data: body, id });
+  response(res, 200, data);
+};
+
 module.exports = {
   listFilmCtrl,
   insertFilmCtrl,
-  removeFilmsCtrl
+  removeFilmsCtrl,
+  updateFilmCtrl
 };
