@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { insertStatic, removeStatic, updateStatic } = require("./statics");
 
 const characterSchema = new Schema(
   {
@@ -24,15 +25,12 @@ characterSchema.statics.list = async function () {
   return data;
 };
 
-characterSchema.statics.insert = async function (char) {
-  const data = await character.create(char);
-  return data;
-};
-
-characterSchema.statics.removeItem = async function (id) {
-  const data = await character.findByIdAndDelete(id);
-  return data;
-};
+characterSchema.statics.insert = (data) =>
+  insertStatic({ model: character, data });
+characterSchema.statics.removeItem = (id) =>
+  removeStatic({ model: character, id });
+characterSchema.statics.update = ({ data, id }) =>
+  updateStatic({ model: character, data, id });
 
 const character = model("character", characterSchema);
 module.exports = character;
