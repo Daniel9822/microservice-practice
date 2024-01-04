@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { updateStatic, insertStatic, removeStatic } = require("./statics");
 
 const planetSchema = new Schema(
   {
@@ -23,15 +24,10 @@ planetSchema.statics.list = async function () {
   return data;
 };
 
-planetSchema.statics.insert = async function (data) {
-  const create = await planet.create(data);
-  return create;
-};
-
-planetSchema.statics.removeItem = async function (id) {
-  const remove = await planet.findByIdAndRemove(id);
-  return remove;
-};
+planetSchema.statics.insert = (data) => insertStatic({ model: planet, data });
+planetSchema.statics.removeItem = (id) => removeStatic({ model: planet, id });
+planetSchema.statics.update = ({ data, id }) =>
+  updateStatic({ model: planet, data, id });
 
 const planet = model("planet", planetSchema);
 
