@@ -12,4 +12,8 @@ const removeService = async ({ model, id }) => {
   return await dbModels[model].removeItem(id);
 };
 
-module.exports = { insertServices, listService, removeService };
+const updateService = async ({ model, data, id }) => {
+  return await dbModels[model].update({ id, data });
+};
+
+module.exports = { insertServices, listService, removeService, updateService };
