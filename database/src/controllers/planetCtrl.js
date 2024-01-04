@@ -1,6 +1,11 @@
 const modelsName = require("../helpers/modelsName");
 const response = require("../helpers/response");
-const { listService, insertServices, removeService } = require("../services");
+const {
+  listService,
+  insertServices,
+  removeService,
+  updateService
+} = require("../services");
 
 const listPlanetCtrl = async (req, res) => {
   const model = modelsName.planetModel;
@@ -22,8 +27,18 @@ const removePlanetCtrl = async (req, res) => {
   response(res, 200, data);
 };
 
+const updatePlanetCtrl = async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  const model = modelsName.planetModel;
+  const data = await updateService({ model, data: body, id });
+  response(res, 200, data);
+};
+
 module.exports = {
   listPlanetCtrl,
   insertPlanetCtrl,
-  removePlanetCtrl
+  removePlanetCtrl,
+  updatePlanetCtrl
 };
