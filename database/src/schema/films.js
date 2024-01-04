@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { insertStatic, removeStatic, updateStatic } = require("./statics");
 
 const filmSchema = new Schema(
   {
@@ -20,15 +21,10 @@ filmSchema.statics.list = async function () {
   return data;
 };
 
-filmSchema.statics.insert = async function (data) {
-  const create = await film.create(data);
-  return create;
-};
-
-filmSchema.statics.removeItem = async function (id) {
-  const remove = await film.findByIdAndRemove(id);
-  return remove;
-};
+filmSchema.statics.insert = (data) => insertStatic({ model: film, data });
+filmSchema.statics.removeItem = (id) => removeStatic({ model: film, id });
+filmSchema.statics.update = ({ id, data }) =>
+  updateStatic({ model: film, data, id });
 
 const film = model("film", filmSchema);
 module.exports = film;
