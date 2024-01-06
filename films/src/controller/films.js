@@ -19,8 +19,17 @@ const removeFilm = async (req, res) => {
   response(res, 200, data);
 };
 
+const updateFilmCtrl = async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  const data = await Films.updateFilm({ id, body });
+  response(res, 200, data);
+};
+
 module.exports = {
   getFilmsCtrl,
   createFilmsCtrl,
-  removeFilm
+  removeFilm,
+  updateFilmCtrl
 };
