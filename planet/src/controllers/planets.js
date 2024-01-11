@@ -19,8 +19,17 @@ const removePlanetCtrl = async (req, res) => {
   response(res, 200, data);
 };
 
+const updatePlanetCtrl = async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  const data = await Planet.updatePlanet({ id, body });
+  response(res, 200, data);
+};
+
 module.exports = {
   getAllPlanetCtrl,
   createPlanetCtrl,
-  removePlanetCtrl
+  removePlanetCtrl,
+  updatePlanetCtrl
 };
