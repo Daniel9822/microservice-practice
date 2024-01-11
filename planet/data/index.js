@@ -29,5 +29,18 @@ module.exports = {
 
     const { data } = await res.json();
     return data;
+  },
+
+  updatePlanet: async ({ id, body }) => {
+    const res = await fetch(`${PATH}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
+
+    const { data } = await res.json();
+    return data;
   }
 };
