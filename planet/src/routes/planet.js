@@ -8,5 +8,6 @@ const {
 router.get("/planet", controllers.getAllPlanet);
 router.post("/planet", planetCreateValidator, controllers.createPlanet);
 router.delete("/planet/:id", planetParamValidate, controllers.removePlanet);
+router.put("/planet/:id", planetParamValidate, controllers.updatePlanet);
 
 module.exports = router;
